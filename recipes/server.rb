@@ -8,9 +8,8 @@
 if platform?("redhat", "fedora")
     
   package "389-ds" do
-    action [:install]
+    action :upgrade
   end
-  
   
   directory '/etc/389' do
     owner "root"
