@@ -1,0 +1,25 @@
+[General] 
+FullMachineName= dir.example.com 
+SuiteSpotUserID= nobody 
+SuiteSpotGroup= nobody 
+AdminDomain= example.com 
+ConfigDirectoryAdminID= admin 
+ConfigDirectoryAdminPwd= admin 
+ConfigDirectoryLdapURL= ldap://dir.example.com:389/o=NetscapeRoot 
+
+[slapd] 
+SlapdConfigForMC= Yes 
+UseExistingMC= 0 
+ServerPort= 389 
+ServerIdentifier= dir 
+Suffix= dc=example,dc=com  
+RootDN= cn=Directory Manager 
+RootDNPwd= secret
+ds_bename=exampleDB 
+AddSampleEntries= No
+
+[admin] 
+Port= 9830
+ServerIpAddress= 111.11.11.11 
+ServerAdminID= admin 
+ServerAdminPwd= admin
