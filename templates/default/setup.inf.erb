@@ -1,25 +1,25 @@
 [General] 
-FullMachineName= dir.example.com 
-SuiteSpotUserID= nobody 
-SuiteSpotGroup= nobody 
-AdminDomain= example.com 
-ConfigDirectoryAdminID= admin 
-ConfigDirectoryAdminPwd= admin 
-ConfigDirectoryLdapURL= ldap://dir.example.com:389/o=NetscapeRoot 
+FullMachineName= <%= node['fqdn'] %>
+SuiteSpotUserID= <%= node['389']['SuiteSpotUserID'] %> 
+SuiteSpotGroup= <%= node['389']['SuiteSpotGroup'] %> 
+AdminDomain= <%= node['domain'] %>
+ConfigDirectoryAdminID= <%= node['389']['ConfigDirectoryAdminID'] %> 
+ConfigDirectoryAdminPwd= <%= node['389']['ConfigDirectoryAdminPwd'] %> 
+ConfigDirectoryLdapURL= ldap://<%= node['fqdn'] %>:389/o=NetscapeRoot 
 
 [slapd] 
 SlapdConfigForMC= Yes 
 UseExistingMC= 0 
-ServerPort= 389 
+ServerPort= <%= node['389']['port'] %>  
 ServerIdentifier= dir 
-Suffix= dc=example,dc=com  
-RootDN= cn=Directory Manager 
-RootDNPwd= secret
+Suffix= <%= node['389']['basedn'] %>
+RootDN= <%= node['389']['rootdn'] %> 
+RootDNPwd= <%= node['389']['rootpw'] %> 
 ds_bename=exampleDB 
 AddSampleEntries= No
 
 [admin] 
-Port= 9830
-ServerIpAddress= 111.11.11.11 
-ServerAdminID= admin 
-ServerAdminPwd= admin
+Port= <%= node['389']['admin_port'] %> 
+ServerIpAddress= <%= node['ipaddress'] %> 
+ServerAdminID= <%= node['389']['ServerAdminID'] %> 
+ServerAdminPwd= <%= node['389']['ServerAdminPwd'] %>

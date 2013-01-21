@@ -17,9 +17,21 @@ if platform?("redhat", "fedora")
     action :create
   end
 
+
+  execute "setup-ds-admin.pl" do
+    command "setup-ds-admin.pl -s -f /etc/389/setup.inf"
+    user "root"
+    action :nothing
+    #notifies :start, resources(:service => "slapd"), :immediately
+  end
+
   template "/etc/389/setup.inf" do
     source "setup.inf.erb"
+    mode 00640
+    #notifies :stop, resources(:service => "slapd"), :immediately
+    notifies :run, resources(:execute => "setup-ds-admin.pl")
   end
+
 
 
 end
